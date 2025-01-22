@@ -2,9 +2,6 @@
 Console.WriteLine(greeting);
 
 
-UserLevel userLevel = new UserLevel();
-userLevel.GetUserLevel();
-
-
-PlayGame playGame = new PlayGame(userLevel);
-playGame.StartGame(userLevel.Attempts);
+// start game by selecting a level
+PlayGame playGame = new PlayGame();
+playGame.StartGame();

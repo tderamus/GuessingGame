@@ -11,13 +11,13 @@ public class UserLevel
         new UserLevel { Level = 2, LevelName = "Medium - This gives the user 6 guesses", Attempts = 6 },
         new UserLevel { Level = 3, LevelName = "Hard - This gives the user 4 gueses", Attempts = 4 },
         new UserLevel { Level = 4, LevelName = "Default - This gives the user 4 gueses", Attempts = 4 },
-        new UserLevel { Level = 5, LevelName = "Exit - Exit This Application" }
     };
 
     public void GetUserLevel()
     {
 
         bool Exit = false;
+
         Console.WriteLine("Select a level to play");
         foreach (UserLevel level in userLevels)
         {
@@ -25,41 +25,29 @@ public class UserLevel
         }
         Level = Convert.ToInt32(Console.ReadLine());
 
-        if (Level < 1 || Level > 4)
-        {
-            Console.WriteLine("Invalid selection. Please select a valid level");
-            GetUserLevel();
-        }
-        else
-        {
-            if (Level == 1)
-            {
-                Console.WriteLine("You have selected Easy Level. \nYou have 8 attempts to guess the number.");
-                Attempts = 8;
-            }
-            else if (Level == 2)
-            {
-                Console.WriteLine("You have selected Medium Level. \nYou have 6 attempts to guess the number.");
+        switch (Level)
+        {case 1:
+                Console.WriteLine($"You have selected Easy Level. \nYou have {userLevels[Level - 1].Attempts} attempts to guess the number.");
+                break;
+            case 2:
+                Console.WriteLine($"You have selected Medium Level. \nYou have {userLevels[Level - 1].Attempts} attempts to guess the number.");
                 Attempts = 6;
-            }
-            else if (Level == 3)
-            {
-                Console.WriteLine("You have selected Hard Level. \nYou have 4 attempts to guess the number.");
+                break;
+            case 3:
+                Console.WriteLine($"You have selected Hard Level. \nYou have {userLevels[Level - 1].Attempts} attempts to guess the number.");
                 Attempts = 4;
-            }
-            else if (Level == 4)
-            {
-                Console.WriteLine("You have selected the default level. \nYou have 4 attempts to guess the number.");
+                break;
+            case 4:
+                Console.WriteLine($"You have selected the default level. \nYou have {userLevels[Level - 1].Attempts} attempts to guess the number.");
                 Attempts = 4;
-            }
-            else if (Level == 5)
-            {
-                Console.WriteLine("You have selected to exit the game. \nGoodbye!");
-                Exit = true;
-            }
+                break;
+            default:
+                Console.WriteLine("Invalid selection. Please select a valid level");
+                GetUserLevel();
+                break;
+
+
         }
 
-        PlayGame playGame = new PlayGame();
-        playGame.StartGame(0);
     }
 }
