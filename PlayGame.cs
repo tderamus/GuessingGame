@@ -28,7 +28,7 @@ public class PlayGame
                 }
                 else if ( userGuess != SecretNumber && userTries == 0)
                 {
-                    Console.WriteLine($"\n\nSorry, you have exhausted all your tries. The secret number is {SecretNumber}");
+                    Console.WriteLine($"\nSorry, you have exhausted all your tries. \nThe secret number is {SecretNumber}");
                     StartGame();
                 }
                 else
