@@ -13,27 +13,53 @@ public class PlayGame
 
         SecretNumber = random.Next(1, 101);
 
-        Console.WriteLine("Guess the secret number between 1 and 100");
+        if (userLevel.Level == 5)
+        {
+            Console.WriteLine("Thanks for Playing, Goodbye!");
+        }
+        else
+        {
+
+
+
+            Console.WriteLine("Guess the secret number between 1 and 100");
         while (userGuess != SecretNumber && attempts > 0)
         {
             userGuess = Convert.ToInt32(Console.ReadLine());
 
+            if (userLevel.Level == 4)
+            {
+                UserOutcome(userGuess);
+                Console.WriteLine();
+                userGuess = Convert.ToInt32(Console.ReadLine());
+            }
+            
             for (int Counter = 0; Counter < userLevel.Attempts; Counter++)
             {
-                int userTries = (userLevel.Attempts -1) - Counter;
+                int userTries = (userLevel.Attempts - 1) - Counter;
                 if (userGuess == SecretNumber)
                 {
                     Console.WriteLine($"Congratulations, the secret number is {SecretNumber}, your guess {userGuess} is correct!");
                     StartGame();
                 }
-                else if ( userGuess != SecretNumber && userTries == 0)
+                else if (userGuess != SecretNumber && userTries == 0)
                 {
                     Console.WriteLine($"\nSorry, you have exhausted all your tries. \nThe secret number is {SecretNumber}");
                     StartGame();
                 }
                 else
                 {
-                    Console.WriteLine($"\nSorry, your guess is incorrect! Please try again. \nYou have {userTries} tries remaining.");
+                    bool isCheaterLevel = userLevel.Level == 4 ;
+                    if (isCheaterLevel)
+                    {
+                        Console.WriteLine($"\nSorry, your guess is incorrect! Please try again. \nYou have unlimited tries remaining.");
+                        UserOutcome(userGuess);
+                        Console.WriteLine();
+                        userGuess = Convert.ToInt32(Console.ReadLine());
+                    }
+                    else
+
+                        Console.WriteLine($"\nSorry, your guess is incorrect! Please try again. \nYou have {userTries} tries remaining.");
                     UserOutcome(userGuess);
                     Console.WriteLine();
                     userGuess = Convert.ToInt32(Console.ReadLine());
@@ -54,4 +80,5 @@ public class PlayGame
             Console.WriteLine($"\nYour guess {userGuess} is lower than the secret number!");
         }
     }
+}
 }
