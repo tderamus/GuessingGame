@@ -23,8 +23,8 @@ public class PlayGame
                 int userTries = (userLevel.Attempts -1) - Counter;
                 if (userGuess == SecretNumber)
                 {
-                    Console.WriteLine($"Congratulations, your guess {userGuess} is correct!");
-                    break;
+                    Console.WriteLine($"Congratulations, the secret number is {SecretNumber}, your guess {userGuess} is correct!");
+                    StartGame();
                 }
                 else if ( userGuess != SecretNumber && userTries == 0)
                 {
@@ -33,8 +33,9 @@ public class PlayGame
                 }
                 else
                 {
+                    Console.WriteLine($"\nSorry, your guess is incorrect! Please try again. \nYou have {userTries} tries remaining.");
                     UserOutcome(userGuess);
-                    Console.WriteLine($"Sorry, your guess is incorrect! Please try again. \nYou have {userTries} tries remaining.");
+                    Console.WriteLine();
                     userGuess = Convert.ToInt32(Console.ReadLine());
                     
                 }
@@ -46,11 +47,11 @@ public class PlayGame
     {
         if (userGuess > SecretNumber)
         {
-            Console.WriteLine($"Your guess {userGuess} is higher than the secret number!");
+            Console.WriteLine($"\nYour guess {userGuess} is higher than the secret number!");
         }
         else
         {
-            Console.WriteLine($"Your guess {userGuess} is lower than the secret number!");
+            Console.WriteLine($"\nYour guess {userGuess} is lower than the secret number!");
         }
     }
 }

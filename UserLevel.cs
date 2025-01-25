@@ -27,6 +27,7 @@ public class UserLevel
         switch (Level)
         {case 1:
                 Console.WriteLine($"\nYou have selected Easy Level. \nYou have {userLevels[Level - 1].Attempts} attempts to guess the number.");
+                Attempts = 8;
                 break;
             case 2:
                 Console.WriteLine($"\nYou have selected Medium Level. \nYou have {userLevels[Level - 1].Attempts} attempts to guess the number.");
